@@ -16,7 +16,7 @@ Contact: Mohammed Alser <mohammedalser@bilkent.edu.tr>
 
 Usage: ./pairExtractor [options] <human_g1k_v37_prepared.fasta> <in.fastq> <out.fastq> <read length>  
 
-Options: -p <human_g1k_v37.fasta>	reference genome preparation mode  
+Options: -p <human_g1k_v37.fasta>	reference genome preparation mode
 
 
 Example
