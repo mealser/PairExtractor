@@ -22,6 +22,6 @@ Options: -p <human_g1k_v37.fasta>	reference genome preparation mode
 Example
 -------------------------
 ```
-./pairExtractor -p human_g1k_v37.fasta  
-./pairExtractor human_g1k_v37_prepared.fasta in.fastq out.fastq 100  
+./pairExtractor -p human_g1k_v37.fasta human_g1k_v37_prepared.fasta
+./pairExtractor human_g1k_v37_prepared.fasta ERR240727_1.map out.fastq 100  
 ```
