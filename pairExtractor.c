@@ -79,6 +79,58 @@ void prepare_genome(const char *fn, const char *fn_new)
 
 static int extract_pairs(const char *genome,const char *fpin, const char *fpout, int readlength)
 {
+	fprintf(stderr,"[%s] Extracting the reference sequence...\n", __func__);
+	char mystring [readlength];
+	int start,i,j;
+	FILE *genomenew, *fpnew, *fp;
+	char line[1024];
+	char *p;
+
+	genomenew = fopen(genome, "r"); //prepared genome
+	fp = fopen(fpin, "r");          //input fastq
+	fpnew = fopen(fpout, "w");	 //output fastq
+    	if (!genomenew || !fpnew || !fp) {
+		fprintf(stderr, "[%s] file open error\n", __func__);
+		return 1;
+	} 
+	/*
+	fprintf(fpnew,"Name\t");
+	fprintf(fpnew,"Read\t");
+	fprintf(fpnew,"SIGAR\t");
+	fprintf(fpnew,"Ref\n");
+	*/
+	for (i = 1; i <= 4000000; i++){
+		if ((fgets(line, sizeof(line), fp)!= NULL ) && (i>86)){		
+			j=1;
+
+			for (p = strtok(line, "\t"); p != NULL; p = strtok(NULL, "\t")){
+				if (j==1)
+					fprintf(fpnew,"%s\t",p);
+				else if (j==4){
+					start = atoi(p);
+					fseek ( genomenew , start-1 , SEEK_SET );
+					if ( fgets (mystring , readlength+1 , genomenew) != NULL ){
+						fprintf(fpnew,"%s\t", mystring);
+					}		
+				}
+				else if (j==6)
+					fprintf(fpnew,"%s\t",p);
+				else if (j==10)
+					fprintf(fpnew,"%s\n",p);
+				j=j+1;
+			}	
+    		}
+	}
+ 
+	fclose(fp);
+	fclose(fpnew);
+	fclose(genomenew);
+	return 0;
+}
+
+
+/*static int extract_pairs(const char *genome,const char *fpin, const char *fpout, int readlength)
+{
 	char mystring [readlength];
     	gzFile fp;  
     	kseq_t *seq;  
@@ -129,7 +181,7 @@ fprintf(fpnew,"name\n");
 	return 0;
 }
 
-
+*/
 static int extractor_usage()
 {
 	fprintf(stderr, "\n");
@@ -158,7 +210,7 @@ int main(int argc, char *argv[])
 
 	//Mode 1: reference genome preparation mode
 	if (prep) { 
-		if (genome!= NULL) 
+		if (genome== NULL) 
 			return extractor_usage();
 		prepare_genome(genome,argv[optind]);
 	} 
