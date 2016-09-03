@@ -40,7 +40,7 @@
 #include <ctype.h>
 #include <string.h>
 
-#define PACKAGE_VERSION "1.0.0"
+#define PACKAGE_VERSION "2.0.0"
 
 // STEP 1: declare the type of file handler and the read() function  
 KSEQ_INIT(gzFile, gzread)  
