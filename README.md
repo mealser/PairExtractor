@@ -8,7 +8,7 @@ sudo make
 ```
 or
 ```
-gcc -g -O2 -Wall -o pairExtractor pairExtractor.c -lz -lm
+gcc -g -O3 -Wall -o pairExtractor pairExtractor.c -lz -lm
 ```
 
 Simulation and evaluation
