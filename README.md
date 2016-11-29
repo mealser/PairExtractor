@@ -3,9 +3,13 @@ It extracts the reference sequence to which a read maps, given the position in t
 
 Compilation
 ===========
-
+```
+sudo make
+```
+or
+```
 gcc -g -O2 -Wall -o pairExtractor pairExtractor.c -lz -lm
-
+```
 
 Simulation and evaluation
 ===========
