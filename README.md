@@ -14,7 +14,7 @@ gcc -g -O3 -Wall -o pairExtractor pairExtractor.c -lz -lm
 Simulation and evaluation
 ===========
 Program: Pair Extractor  
-Description: It extracts the reference sequence to which a read maps, given the position in the reference sequence,)  
+Description: It extracts the reference sequence to which a read maps, given the position in the reference sequence,
 Version: 1.0.0  
 Contact: Mohammed Alser <mohammedalser@bilkent.edu.tr>  
 
